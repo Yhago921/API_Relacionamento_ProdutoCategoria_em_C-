@@ -1,3 +1,4 @@
+using MinhaApi.Dto.Categoria;
 using MinhaApi.Models;
 
 namespace MinhaApi.Services.Categoria;
@@ -8,5 +9,8 @@ public interface ICategoriaInterface
     Task<ResponseModel<CategoriaModel>> BuscarCategoriaporId(int idCategoria);
 
     Task<ResponseModel<CategoriaModel>> BuscarCategoriaporIdProduto (int Produto);
-    
+
+ //   Task<ResponseModel<CategoriaModel>> DeletarCategoria (int idCategoria);
+    Task<ResponseModel<List<CategoriaModel>>> CadastrarCategoria(CategoriaCriacaoDto CategoriaCriacaoDto);
+
 }

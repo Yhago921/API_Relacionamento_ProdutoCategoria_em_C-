@@ -59,6 +59,36 @@ public class CategoriaService : ICategoriaInterface
         }
     }
 
+  /*  public async Task<ResponseModel<CategoriaModel>> DeletarCategoria(int idCategoria)
+    {   
+        ResponseModel<CategoriaModel> resposta = new();
+        try
+        {
+
+            var categoria = this.context.Categorias.FirstOrDefaultAsync(categoria => categoria.Id ==idCategoria);
+
+            if(categoria == null)
+            {
+                resposta.Mensagem = "Não foi encontrada nenhuma categoria com este Id";
+                return resposta;
+            }
+
+            this.context.Remove(categoria);
+            await this.context.SaveChangesAsync();
+
+            resposta.Dados = await this.context.Categorias.ToListAsync();
+            resposta.Mensagem = "Categoria Remoovida com sucesso";
+
+            return resposta;
+
+        }catch(Exception erro)
+        {
+         resposta.Mensagem = erro.Message;
+         resposta.Status = false;
+         return resposta;    
+        }
+    }*/
+
     public async Task<ResponseModel<List<CategoriaModel>>> ListarCategorias()
     {
         ResponseModel<List<CategoriaModel>> resposta = new();

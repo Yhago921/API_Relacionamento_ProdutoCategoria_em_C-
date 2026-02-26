@@ -6,6 +6,6 @@ public class ProdutoModel
     public string? Nome { get; set; } 
     
     public int CategoriaId {get; set; }
-    public CategoriaModel?  Categoria { get; set; }
+    public CategoriaModel ?  Categoria { get; set; }
 
 }

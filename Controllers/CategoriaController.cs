@@ -26,11 +26,19 @@ namespace MinhaApi.Controllers
             var categorias = await this.categoriaInterface.BuscarCategoriaporId(idCategoria);
             return Ok(categorias);
         }    
-    [HttpDelete("BuscarCategoriaporIdProduto/{idProduto}")]
+    [HttpGet("BuscarCategoriaporIdProduto/{idProduto}")]
     public async Task<ActionResult<ResponseModel<CategoriaModel>>> BuscarCategoriaporIdProduto(int IdProduto)
         {
             var categorias = await this.categoriaInterface.BuscarCategoriaporIdProduto(IdProduto);
             return Ok(categorias);
         }
-      };
-}
+
+   /* [HttpDelete("DeletarCategoria/{idCategoria}")]
+    public async Task<ResponseModel<CategoriaModel>> DeletarCategoria(int idCategoria)
+        {
+            var categorias = await this.categoriaInterface.DeletarCategoria(idCategoria);
+            return Ok();
+        }*/
+     
+     }
+};

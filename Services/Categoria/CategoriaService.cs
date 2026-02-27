@@ -1,11 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using MinhaApi.Data;
+using MinhaApi.Dto.Categoria;
 using MinhaApi.Models;
 
 namespace MinhaApi.Services.Categoria;
 public class CategoriaService : ICategoriaInterface
 {
     private readonly AppDbContext context;
+
     public CategoriaService (AppDbContext context)
     {
         this.context = context;
@@ -59,35 +61,59 @@ public class CategoriaService : ICategoriaInterface
         }
     }
 
-  /*  public async Task<ResponseModel<CategoriaModel>> DeletarCategoria(int idCategoria)
-    {   
-        ResponseModel<CategoriaModel> resposta = new();
+    /*public async  Task<ResponseModel<List<CategoriaModel>>> CadastrarCategoria(CategoriaCriacaoDto CategoriaCriacaoDto)
+    {
+       ResponseModel<List<CategoriaModel>> resposta = new();
         try
         {
-
-            var categoria = this.context.Categorias.FirstOrDefaultAsync(categoria => categoria.Id ==idCategoria);
-
-            if(categoria == null)
+            var novaCategoria = new CategoriaModel()
             {
-                resposta.Mensagem = "Não foi encontrada nenhuma categoria com este Id";
-                return resposta;
-            }
-
-            this.context.Remove(categoria);
-            await this.context.SaveChangesAsync();
-
-            resposta.Dados = await this.context.Categorias.ToListAsync();
-            resposta.Mensagem = "Categoria Remoovida com sucesso";
-
-            return resposta;
-
-        }catch(Exception erro)
+                Nome = CategoriaCriacaoDto.Nome,
+            };
+           this.context.Add(novaCategoria);
+           await this.context.SaveChangesAsync();
+            
+           resposta.Dados = await this.context.Categorias.ToListAsync();
+           resposta.Mensagem = "Categoria cadastrada com sucesso";
+           return resposta;
+        } 
+        catch(Exception erro)
         {
-         resposta.Mensagem = erro.Message;
-         resposta.Status = false;
-         return resposta;    
+        resposta.Mensagem = erro.Message;
+        resposta.Status = false;
+        return resposta;
         }
     }*/
+
+      public async Task<ResponseModel<List<CategoriaModel>>> DeletarCategoria(int idCategoria)
+      {   
+          ResponseModel<List<CategoriaModel>> resposta = new();
+          try
+          {
+
+              var categoria = this.context.Categorias.FirstOrDefaultAsync(categoria => categoria.Id ==idCategoria);
+
+              if(categoria == null)
+              {
+                  resposta.Mensagem = "Não foi encontrada nenhuma categoria com este Id";
+                  return resposta;
+              }
+
+              this.context.Remove(categoria);
+              await this.context.SaveChangesAsync();
+
+              resposta.Dados = await this.context.Categorias.ToListAsync();
+              resposta.Mensagem = "Categoria Remoovida com sucesso";
+
+              return resposta;
+
+          }catch(Exception erro)
+          {
+           resposta.Mensagem = erro.Message;
+           resposta.Status = false;
+           return resposta;    
+          }
+      }
 
     public async Task<ResponseModel<List<CategoriaModel>>> ListarCategorias()
     {
@@ -108,4 +134,6 @@ public class CategoriaService : ICategoriaInterface
             return resposta;
         }
     }
+
+  
 }

@@ -14,6 +14,7 @@ namespace MinhaApi.Controllers
     {
         this.categoriaInterface = categoriaInterface;
     }
+   // [HttpPost("CadastrarCategoria")]
     [HttpGet("listarCategorias")]
     public async Task<ActionResult<ResponseModel<List<CategoriaModel>>>> ListarCategorias()
         {
@@ -33,12 +34,12 @@ namespace MinhaApi.Controllers
             return Ok(categorias);
         }
 
-   /* [HttpDelete("DeletarCategoria/{idCategoria}")]
-    public async Task<ResponseModel<CategoriaModel>> DeletarCategoria(int idCategoria)
+    [HttpDelete("DeletarCategoria/{idCategoria}")]
+    public async Task<ActionResult<ResponseModel<List<CategoriaModel>>>> DeletarCategoria(int idCategoria)
         {
             var categorias = await this.categoriaInterface.DeletarCategoria(idCategoria);
-            return Ok();
-        }*/
+            return Ok(categorias);
+        }
      
      }
 };
